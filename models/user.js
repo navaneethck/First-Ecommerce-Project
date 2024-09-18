@@ -5,7 +5,9 @@ const  crypto=require('crypto');
 
 const userSchema=new schema({
     email:{type:String,required:true,unique:true},
-    password:{type:String,required:true}
+    password:{type:String,required:true},
+    isadmin:{type:Boolean,default:false}
+
 })
 
 

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin/adminhome.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Orders</a></li>
+            <li><a href="#">Users</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Welcome, Admin</h1>
+            <button class="logout-btn">Logout</button>
+        </header>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Products</h3>
+                <p>150</p>
+            </div>
+            <div class="card">
+                <h3>Total Orders</h3>
+                <p>450</p>
+            </div>
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>300</p>
+            </div>
+        </div>
+
+        <section class="table-section">
+            <h2>Recent Orders</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#10234</td>
+                        <td>Smartphone</td>
+                        <td>2</td>
+                        <td>Delivered</td>
+                        <td>2024-09-18</td>
+                    </tr>
+                    <tr>
+                        <td>#10235</td>
+                        <td>Laptop</td>
+                        <td>1</td>
+                        <td>Pending</td>
+                        <td>2024-09-17</td>
+                    </tr>
+                    <tr>
+                        <td>#10236</td>
+                        <td>Headphones</td>
+                        <td>5</td>
+                        <td>Shipped</td>
+                        <td>2024-09-16</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

@@ -5,6 +5,8 @@ const app = express();
 const bodyparser = require("body-parser");
 const userRouter = require("./routes/userrouters");
 const homeRouter= require("./routes/homeroute");
+const adminRouter=require("./routes/adminroute");
+
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
@@ -28,6 +30,7 @@ app.use(
 
 app.use(homeRouter);
 app.use(userRouter);
+app.use(adminRouter)
 
 
 
@@ -37,8 +40,8 @@ mongoose
   .connect(mongoURL)
   .then((data) => {
     console.log("mongo connected successful")
-    app.listen(process.env.PORT || 3050, () => {
-      console.log("server is running on port 3050");
+    app.listen(process.env.PORT, () => {
+      console.log("server is running oN PORT");
     });
   })
   .catch((err) => {

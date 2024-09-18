@@ -6,6 +6,7 @@ const sendResetEmail= require('../utilities/emailservices')
 
 // for signup
 const register = async (req, res) => {
+  
   console.log(req.body.email)
   const Email = req.body.email;
   const finduser = await user.findOne({ email: Email });
@@ -61,9 +62,12 @@ const login = async (req, res) => {
   if (finduser) {
      
   const match=await bcrypt.compare(password,finduser.password); 
+  if(finduser.isadmin){
+    return res.status(200).redirect('/adminhome');
+  }
      if(match){ 
       req.session.user = finduser
-      res.redirect('/')
+      return res.redirect('/')
       // res.json({
       //   message: "successfullylogined",
       //   success: true,
@@ -120,26 +124,27 @@ const login = async (req, res) => {
 
     try{
       const decoded=jwt.verify(token,process.env.JWT_SECRET);
+      console.log("Decoded Token:", decoded);
       const finduser=await user.findById(decoded.id);
 
       if(!finduser){
-        return res.json({message:"user not found",success:false});
+        return res.status(404).json({ message: "User not found", success: false });
       }
 
       if(newPassword==confirmPassword){
         const hasedpassword= await hashpassword(newPassword);
         finduser.password=hasedpassword;
         await finduser.save();
-        res.json({ message: "Password updated successfully", success: true });
+        return res.status(200).json({message:"password updated successfully",success:true})
       }else{
-        res.json({ message: "Passwords do not match", success: false });
+        return res.status(400).json({message:"password do not match",success:false})
       }
 
     }catch(error){
-      console.error("Error during password reset:", error);
-      res.status(400).json({ message: "Invalid or expired token", success: false });
+      console.error("Error during password reset:", error.message);
+      return res.status(400).json({message:"Invalid or expired token",success:false});
     }
-   }   
+   };
 
 
 
