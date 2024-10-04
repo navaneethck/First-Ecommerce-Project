@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Category Management</title>
+    <link rel="stylesheet" href="/css/admin/admincategory.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Category Management</h1>
+
+        <!-- Section for adding a new category -->
+        <div class="new-category">
+            <h2>Add New Category</h2>
+            <form action="/category/AddCategory" method="POST">
+                <label for="category-name">Category Name</label>
+                <input type="text" id="category-name" name="name" placeholder="Enter category name" required>
+                <button type="submit">Add Category</button>
+            </form>
+        </div> 
+
+        <!-- Section for viewing and managing categories -->
+        <div class="category-list">
+            <h2>Existing Categories</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% categories.forEach(category => { %>
+                        <tr>
+                            <td><%= category.name %></td>
+                            <td>
+                                <form action="/category/DeleteCategory/<%= category._id %>" method="POST"onsubmit="return confirm('Are you sure you want to delete this category?');">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

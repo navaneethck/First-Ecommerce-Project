@@ -6,6 +6,7 @@ const session=require('express-session');
 const bodyparser=require('body-parser');
 const dotenv=require('dotenv');
 
+
 //initializing express app
 
 const app=express();
@@ -29,10 +30,12 @@ app.use(bodyparser.urlencoded({ extended: false}));
 //seting the static folder
 
 app.use(express.static('public'));
+app.use('/images', express.static('public/images'));
+
 
 //setting the view engine to ejs
 
-app.set('viewengine','ejs');
+app.set('view engine','ejs');
 
 //session configuration
 
@@ -44,6 +47,8 @@ app.use(
     cookie: {secure: false},
   })
 );
+
+
 
 //using the imported routers
 

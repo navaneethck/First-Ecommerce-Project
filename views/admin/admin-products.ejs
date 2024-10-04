@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Product Management</title>
+    <link rel="stylesheet" href="/css/admin/adminproduct.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Product Management</h1>
+        
+        <!-- Section for creating a new product -->
+        <div class="new-product">
+            <h2>Create New Product</h2>
+            <form action="/products/createproduct" method="POST" enctype="multipart/form-data" >
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" name="name" placeholder="Enter product name" required>
+                
+                <label for="product-price">Price</label>
+                <input type="number" id="product-price" name="price" placeholder="Enter product price" required>
+                
+                <label for="product-description">Description</label>
+                <textarea id="product-description" name="description" placeholder="Enter product description"></textarea>
+                
+                <label for="product-category">Category</label>
+                <select id="product-category" name="category">
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                </select>
+
+                <label for="product-stock">Stock</label>
+                <input type="number" id="product-stock" name="stock" placeholder="Enter the number of stocks" required>
+                
+               <label for ='product-images'>Upload images:</label>
+               <input type='file' id="product-images" name="images" multiple required>
+                
+                <button type="submit">Add Product</button>
+            </form>
+        </div>
+
+        <!-- Section for viewing and managing products -->
+        <div class="product-list">
+            <h2>Manage Existing Products</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Stock</th>
+                        <th>Images</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example of how the product list will look -->
+                     <% products.forEach(product => { %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td>$<%= product.price %></td>
+                        <td><%= product.category %></td>
+                        <td><%= product.stock %></td>
+                        
+                        <td>
+                          <!-- <% product.images.forEach(image=> { %>
+                             <img src="/images/products/<%= image %>" alt="<%= product.name %>" style="width: 100px; height: auto; margin-right: 10px;">
+                             <% }) %> -->
+                             <% if (product.images && product.images.length > 0) { %>
+                                <img src="<%= product.images[0] %>" alt="Product Image" width="100" height="100">
+                            <% } else { %>
+                                <p>No image available</p>
+                            <% } %>
+                        </td>
+                        <td>
+                            <a href="/admin/products/edit/<%= product._id %>" class="edit-btn">Edit</a>
+                            <a href="/admin/products/delete/<%= product._id %>"class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                    <!-- Repeat rows for each product -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
