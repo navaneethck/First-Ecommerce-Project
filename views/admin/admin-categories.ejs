@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Category Management</title>
     <link rel="stylesheet" href="/css/admin/admincategory.css">
+   
 </head>
 <body>
     <div class="container">
@@ -45,5 +46,13 @@
             </table>
         </div>
     </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMessage = urlParams.get('error');
+
+        if (errorMessage) {
+            alert(errorMessage);
+        }
+    </script>
 </body>
 </html>

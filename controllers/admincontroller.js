@@ -10,20 +10,27 @@ const AddCategory = async (req,res) =>{
         console.log({name});
        
         // const{name} =req.body;
-        
-        if(name.toLowerCase()==='men'||name.toLowerCase()==='women'){
+        const validCategories = ['men','women'];
+         if (validCategories.includes(name)){
             const newCategory = new category({
                 name,
-            })
+            });
+
             await newCategory.save();
             res.redirect('/admincategory');
         }else{
-            res.status("Now you can only add two category MEN and WOMEN")
+            // res.status(400).json({
+            //     message: 'Please type exact "men" or "women".',
+               
+            // });
+            
+            res.redirect('/admincategory?error=Please type exact "men" or "women".');
         }
         
     }catch(error){
         console.log(error.message)
-        res.status(500).json({ message: 'Error adding category', error });
+        // res.status(500).json({ message: 'Error adding category', error });
+        res.redirect('/admincategory?error=Error adding category');
     }
 };
 

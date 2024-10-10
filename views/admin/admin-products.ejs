@@ -24,9 +24,10 @@
                 <textarea id="product-description" name="description" placeholder="Enter product description"></textarea>
                 
                 <label for="product-category">Category</label>
-                <select id="product-category" name="category">
-                    <option value="men">Men</option>
-                    <option value="women">Women</option>
+                <select id="product-category" name="category" required>
+                    <% categories.forEach(category => { %>
+                    <option value="<%= category._id %>"><%= category.name %></option>
+                <% }) %>
                 </select>
 
                 <label for="product-stock">Stock</label>
@@ -42,7 +43,7 @@
         <!-- Section for viewing and managing products -->
         <div class="product-list">
             <h2>Manage Existing Products</h2>
-            <table>
+            <table>`
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -59,7 +60,7 @@
                     <tr>
                         <td><%= product.name %></td>
                         <td>$<%= product.price %></td>
-                        <td><%= product.category %></td>
+                        <td><%= product.category?.name || 'No Category' %></td>
                         <td><%= product.stock %></td>
                         
                         <td>
