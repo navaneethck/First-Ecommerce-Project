@@ -19,17 +19,12 @@ const AddCategory = async (req,res) =>{
             await newCategory.save();
             res.redirect('/admincategory');
         }else{
-            // res.status(400).json({
-            //     message: 'Please type exact "men" or "women".',
-               
-            // });
             
             res.redirect('/admincategory?error=Please type exact "men" or "women".');
         }
         
     }catch(error){
         console.log(error.message)
-        // res.status(500).json({ message: 'Error adding category', error });
         res.redirect('/admincategory?error=Error adding category');
     }
 };

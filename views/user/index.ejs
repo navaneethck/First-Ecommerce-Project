@@ -56,15 +56,10 @@
 				<li><a href="#">Blog</a></li> -->
 				<li><a href="/contact">Contact</a></li>
 				<li><a href="/profile">profile</a></li>
-                
-				<!-- <% if (user) { %>
-				<h2>welcome, <%= user.email %>!</h2>
-				<a href="/logout">Logout</a>
-				<% }else{ %>
-					<a href="/login">Login</a>
-                <% } %> -->
-				
-
+				<% if (user) { %>
+					<li><a href="#" style="color: rgb(231, 226, 69); font-style: italic;">Welcome...!, <%= user.email %></a></li>
+					<li><a href="/logout">Logout</a></li>
+				<% } %>
 			</ul>
 		</div>
 	</header>
