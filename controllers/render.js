@@ -1,6 +1,19 @@
-const home=(req,res)=>{
-    res.render('user/index',{user:req.session.user});
+const Product = require ('../models/product')
+
+
+const home= async (req,res)=>{
+    try{
+        const products = await Product.find();
+        res.render('user/index',{
+            user:req.session.user,
+            products:products});
+
+    }catch(error){
+    console.error('Error fetching products:',error);
+    res.status(500).send('Error fetching products')
 }
+};
+
 const women=(req,res)=>{
     res.render('user/product');
 }

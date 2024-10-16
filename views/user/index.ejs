@@ -51,7 +51,7 @@
 			<ul class="main-menu">
 				<li><a href="#">Home</a></li>
 				<li><a href="#">Woman</a></li>
-				<li><a href="#">Man</a></li>
+				<li><a href="#">Men</a></li>
 				<!-- <li><a href="#">LookBook</a></li>
 				<li><a href="#">Blog</a></li> -->
 				<li><a href="/contact">Contact</a></li>
@@ -207,10 +207,11 @@
 				<li class="control" data-filter=".best">Best sellers</li>
 			</ul>
 			<div class="row" id="product-filter">
-				<div class="mix col-lg-3 col-md-6 best">
+				<% products.forEach(product => { %>
+				<div class="mix col-lg-3 col-md-6 <%= product.category %>">
 					<div class="product-item">
 						<figure>
-							<img src="img/products/1.jpg" alt="">
+							<img src="<%= product.images[0] %>" alt="<%= product.name %>" 								>
 							<div class="pi-meta">
 								<div class="pi-m-left">
 									<img src="img/icons/eye.png" alt="">
@@ -223,11 +224,12 @@
 							</div>
 						</figure>
 						<div class="product-info">
-							<h6>Long red Shirt</h6>
-							<p>$39.90</p>
+							<h6><%= product.name %></h6>
+							<p>$<%= product.price %></p>
 							<a href="#" class="site-btn btn-line">ADD TO CART</a>
 						</div>
 					</div>
+					
 				</div>
 				<div class="mix col-lg-3 col-md-6 new">
 					<div class="product-item">
@@ -386,6 +388,7 @@
 						</div>
 					</div>
 				</div>
+				<% }) %>
 			</div>
 		</div>
 	</section>

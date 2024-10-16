@@ -1,8 +1,10 @@
 
 const express=require('express');
+const Product = require('../models/product');
 const router=express.Router();
 const multer = require('multer');
 const path = require('path');
+
 
 
 const{adminhome,AdminProducts,AdminCategory }=require('../controllers/admin_render')
@@ -19,7 +21,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB size limit
+    limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB size limit
     fileFilter: function (req, file, cb) {
         const fileTypes = /jpeg|jpg|png|gif/;
         const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
